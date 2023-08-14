@@ -35,13 +35,13 @@ const Status: FC = () => {
 
     return (
         <>
-            <Button style={{ float: 'right', marginTop: 16}} type="primary" danger shape="circle" icon={<LogoutOutlined />} size="small" onClick={ handleLogout }/>
+            <Button style={{ float: 'right', marginTop: 16, marginRight: 16}} type="primary" danger shape="circle" icon={<LogoutOutlined />} size="small" onClick={ handleLogout }/>
 
             <Divider orientation="center">Semana</Divider>
             
 
 
-            <Card style={{ marginTop: 16, marginLeft: 16, marginRight: 0 }}>
+            <Card style={{ marginTop: 16, marginLeft: 16, marginRight: 16 }}>
             {
                 status?.map((s, index) => (
                     
