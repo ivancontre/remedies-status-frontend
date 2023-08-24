@@ -20,6 +20,7 @@ export const startLogin = (email: string, password: string, setloading: Function
                 console.log(respJson)
 
                 dispatch(login({
+                    id: respJson.user.id,
                     name: respJson.user.name,
                     email: respJson.user.email
                 }));
@@ -72,6 +73,7 @@ export const startChecking = () => {
                 localStorage.setItem('token', respJson.token);
 
                 dispatch(login({
+                    id: respJson.user.id,
                     name: respJson.user.name,
                     email: respJson.user.email
                 }));

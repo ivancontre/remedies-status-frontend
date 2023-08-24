@@ -4,6 +4,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 
+
 import '../css/auth.css';
 
 const { Content } = Layout;

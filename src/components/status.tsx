@@ -1,4 +1,4 @@
-import { FC, useContext } from "react";
+import { FC, useContext, useEffect } from "react";
 import moment from 'moment';
 import {
     Switch,
@@ -11,6 +11,8 @@ import {
 } from 'antd';
 
 import { LogoutOutlined } from '@ant-design/icons';
+import useSocketCustom from 'react-use-websocket';
+
 
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
@@ -22,23 +24,35 @@ const Status: FC = () => {
 
     const { showLoading, hideLoading } = useContext(LoadingContext);
     const { status } = useSelector((state: RootState) => state.status); 
+    const token = localStorage.getItem('token') || '';
+
+    const { sendMessage, readyState } = useSocketCustom('wss://remedies-status-backend-9767cddcb0a5.herokuapp.com', {
+        shouldReconnect: (closeEvent) => true,
+        queryParams: {
+            'x-token': token
+        }
+      });
 
     const dispatch = useDispatch();
 
     const handleSwitch = (checked: boolean, id: string, morning: string) => {
-        dispatch(startUpdateStatus(id, morning, checked === true ? 'OPEN' : 'CLOSED', showLoading, hideLoading));
+        dispatch(startUpdateStatus(id, morning, checked === true ? 'OPEN' : 'CLOSED', showLoading, hideLoading, sendMessage, '64d69a90fa92da258cf155be'));
     };
     
     const handleLogout = () => {
         dispatch(startLogout());
     }
 
+    useEffect(() => {
+        console.log(readyState === 1 ? 'open' : 'close')
+
+    }, [readyState]);
+
     return (
         <>
             <Button style={{ float: 'right', marginTop: 16, marginRight: 16}} type="primary" danger shape="circle" icon={<LogoutOutlined />} size="small" onClick={ handleLogout }/>
 
-            <Divider orientation="center">Semana</Divider>
-            
+            <Divider orientation="center">Semana</Divider>           
 
 
             <Card style={{ marginTop: 16, marginLeft: 16, marginRight: 16 }}>

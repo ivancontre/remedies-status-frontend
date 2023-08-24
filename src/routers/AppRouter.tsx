@@ -1,7 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-
 import { RootState } from '../store';
 
 import { AuthRouter } from './AuthRouter';
@@ -23,8 +22,7 @@ import { startLoadStatus } from '../store/status/action';
 const AppRouter: FC = () => {
 
     const dispatch = useDispatch();
-
-    const { checking, logged } = useSelector((state: RootState) => state.auth);   
+    const { checking, logged } = useSelector((state: RootState) => state.auth); 
 
     useEffect(() => {
         dispatch(startChecking());

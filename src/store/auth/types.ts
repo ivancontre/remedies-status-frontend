@@ -5,6 +5,7 @@ export const authLogout = '[auth] Logout';
 export const authCheckingFinish = '[auth] Finish checking login state';
 
 export type User = {
+    id: string;
     name: string;
     email: string;
 };
