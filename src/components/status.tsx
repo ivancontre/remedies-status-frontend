@@ -35,8 +35,11 @@ const Status: FC = () => {
 
     const dispatch = useDispatch();
 
-    const handleSwitch = (checked: boolean, id: string, morning: string) => {
-        dispatch(startUpdateStatus(id, morning, checked === true ? 'OPEN' : 'CLOSED', showLoading, hideLoading, sendMessage, '64d69a90fa92da258cf155be'));
+    const handleSwitch = (checked: boolean, id: string, day: string, field: string) => {
+        let status = checked === true ? 'OPEN' : 'CLOSED';
+        let str = '?esp32Id=64d69a90fa92da258cf155be&day='+day+'&field='+field+'&status='+status;       
+        sendMessage(str);
+        dispatch(startUpdateStatus(id, field, status, showLoading, hideLoading));
     };
     
     const handleLogout = () => {
@@ -64,11 +67,11 @@ const Status: FC = () => {
                             {s.day}
                         </Col>
                         <Col span={5} offset={1}>
-                            <Switch key={s.id+s.morning} onChange={ (e) => handleSwitch(e, s.id, 'morning') } checkedChildren="AM" unCheckedChildren="AM" checked={s.morning === 'OPEN' ? true : false}/>
+                            <Switch key={s.id+s.morning} onChange={ (e) => handleSwitch(e, s.id, s.day, 'morning') } checkedChildren="AM" unCheckedChildren="AM" checked={s.morning === 'OPEN' ? true : false}/>
                             <Tag style={{ marginTop: 8}} color="green">{moment(s.updatedat_morning).format('DD/MM HH:mm')}</Tag>
                         </Col>
                         <Col span={5} offset={2}>
-                            <Switch key={s.id+s.afternoon} onChange={ (e) => handleSwitch(e, s.id, 'afternoon') } checkedChildren="PM" unCheckedChildren="PM" checked={s.afternoon === 'OPEN' ? true : false}/>
+                            <Switch key={s.id+s.afternoon} onChange={ (e) => handleSwitch(e, s.id, s.day, 'afternoon') } checkedChildren="PM" unCheckedChildren="PM" checked={s.afternoon === 'OPEN' ? true : false}/>
                             <Tag style={{ marginTop: 8}} color="green">{moment(s.updatedat_afternoon).format('DD/MM HH:mm')}</Tag>
                         </Col>
                     </Row>

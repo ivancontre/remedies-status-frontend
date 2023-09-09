@@ -25,7 +25,7 @@ export const startLoadStatus = () => {
     }
 };
 
-export const startUpdateStatus = (id: string, field: string, status: string, showLoading: Function, hideLoading: Function, sendMessage: Function, idEsp32: string) => {
+export const startUpdateStatus = (id: string, field: string, status: string, showLoading: Function, hideLoading: Function) => {
     return async (dispatch: Dispatch<StatusActionTypes>) => {
 
         showLoading();
@@ -37,7 +37,6 @@ export const startUpdateStatus = (id: string, field: string, status: string, sho
 
             if (resp.status === 200) {
                 dispatch(loadStatus(respJson));
-                sendMessage('CALL_API='+idEsp32)
             } else {
                 message.warn(respJson.msg, 7);
                 console.log(respJson.msg);  
