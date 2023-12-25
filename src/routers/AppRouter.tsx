@@ -17,6 +17,7 @@ import {
 import { startChecking } from '../store/auth/action';
 import { Spin } from 'antd';
 import { startLoadStatus } from '../store/status/action';
+import { startLoadStatusV2 } from '../store/statusv2/action';
 
 
 const AppRouter: FC = () => {
@@ -32,6 +33,7 @@ const AppRouter: FC = () => {
         
         if (logged) {
             dispatch(startLoadStatus());
+            dispatch(startLoadStatusV2());
         }
         
     }, [dispatch, logged]);
