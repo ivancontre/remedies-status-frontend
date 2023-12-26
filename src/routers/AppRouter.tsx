@@ -32,7 +32,6 @@ const AppRouter: FC = () => {
     useEffect(() => {
         
         if (logged) {
-            dispatch(startLoadStatus());
             dispatch(startLoadStatusV2());
         }
         
