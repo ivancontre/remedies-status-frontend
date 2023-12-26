@@ -24,7 +24,6 @@ import { startUpdateStatusV2 } from "../store/statusv2/action";
 const Status: FC = () => {
 
     const { showLoading, hideLoading } = useContext(LoadingContext);
-    const { status } = useSelector((state: RootState) => state.status); 
     const { statusV2 } = useSelector((state: RootState) => state.statusV2); 
     const token = localStorage.getItem('token') || '';
 
@@ -37,12 +36,12 @@ const Status: FC = () => {
 
     const dispatch = useDispatch();
 
-    const handleSwitch = (checked: boolean, id: string, day: string, field: string) => {
+    /*const handleSwitch = (checked: boolean, id: string, day: string, field: string) => {
         let status = checked === true ? 'OPEN' : 'CLOSED';
         let str = '?esp32Id=64d69a90fa92da258cf155be&day='+day+'&field='+field+'&status='+status;       
         sendMessage(str);
         dispatch(startUpdateStatus(id, field, status, showLoading, hideLoading));
-    };
+    };*/
 
     const handleSwitchV2 = (checked: boolean, id: string, field: string) => {
         dispatch(startUpdateStatusV2(id, field, checked, showLoading, hideLoading));
