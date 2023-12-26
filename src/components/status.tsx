@@ -16,7 +16,6 @@ import useSocketCustom from 'react-use-websocket';
 
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
-import { startUpdateStatus } from "../store/status/action";
 import { LoadingContext } from "../context/LoadingContext";
 import { startLogout } from "../store/auth/action";
 import { startUpdateStatusV2 } from "../store/statusv2/action";
@@ -27,12 +26,12 @@ const Status: FC = () => {
     const { statusV2 } = useSelector((state: RootState) => state.statusV2); 
     const token = localStorage.getItem('token') || '';
 
-    const { sendMessage, readyState } = useSocketCustom('wss://remedies-status-backend-9767cddcb0a5.herokuapp.com', {
+    /*const { sendMessage, readyState } = useSocketCustom('wss://remedies-status-backend-9767cddcb0a5.herokuapp.com', {
         shouldReconnect: (closeEvent) => true,
         queryParams: {
             'x-token': token
         }
-      });
+      });*/
 
     const dispatch = useDispatch();
 
