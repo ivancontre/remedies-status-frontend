@@ -42,8 +42,8 @@ const Status: FC = () => {
         dispatch(startUpdateStatus(id, field, status, showLoading, hideLoading));
     };*/
 
-    const handleSwitchV2 = (checked: boolean, id: string, field: string) => {
-        dispatch(startUpdateStatusV2(id, field, checked, showLoading, hideLoading));
+    const handleSwitchV2 = (checked: boolean, id: string, day:string, field: string) => {
+        dispatch(startUpdateStatusV2(id, day, field, checked, showLoading, hideLoading));
     };
     
     const handleLogout = () => {
@@ -67,15 +67,16 @@ const Status: FC = () => {
                 statusV2?.map((s, index) => (
                     
                     <Row style={{ padding: 10, backgroundColor: index%2 === 0 ? '#ebebeb' : ''}} key={s.id} justify="center" >
+                        {s.updatedAtAM}
                         <Col span={6}>
                             {s.day}
                         </Col>
                         <Col span={5} offset={1}>
-                            <Switch key={index} onChange={ (e) => handleSwitchV2(e, s.id, 'enabledAM') } checkedChildren="AM" unCheckedChildren="AM" checked={s.enabledAM}/>
+                            <Switch key={index} onChange={ (e) => handleSwitchV2(e, s.id, s.day, 'enabledAM') } checkedChildren="AM" unCheckedChildren="AM" checked={s.enabledAM}/>
                             <Tag style={{ marginTop: 8}} color="green">{moment(s.updatedAtAM).format('DD/MM HH:mm')}</Tag>
                         </Col>
                         <Col span={5} offset={2}>
-                            <Switch key={index} onChange={ (e) => handleSwitchV2(e, s.id, 'enabledPM') } checkedChildren="PM" unCheckedChildren="PM" checked={s.enabledPM}/>
+                            <Switch key={index} onChange={ (e) => handleSwitchV2(e, s.id,  s.day, 'enabledPM') } checkedChildren="PM" unCheckedChildren="PM" checked={s.enabledPM}/>
                             <Tag style={{ marginTop: 8}} color="green">{moment(s.updatedAtPM).format('DD/MM HH:mm')}</Tag>
                         </Col>
                     </Row>

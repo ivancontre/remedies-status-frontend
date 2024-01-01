@@ -25,14 +25,14 @@ export const startLoadStatusV2 = () => {
     }
 };
 
-export const startUpdateStatusV2 = (id: string, key: string, value: boolean, showLoading: Function, hideLoading: Function) => {
+export const startUpdateStatusV2 = (id: string, day: string, key: string, value: boolean, showLoading: Function, hideLoading: Function) => {
     return async (dispatch: Dispatch<StatusV2ActionTypes>) => {
 
         showLoading();
 
         try {
             const token = localStorage.getItem('token') as string;
-            const resp = await runFetch('api/v2/status/' + id , {key, value}, 'PUT', token);
+            const resp = await runFetch('api/v2/status/' + id , {day, key, value}, 'PUT', token);
             const respJson = await resp.json();
 
             if (resp.status === 200) {
