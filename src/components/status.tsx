@@ -67,7 +67,6 @@ const Status: FC = () => {
                 statusV2?.map((s, index) => (
                     
                     <Row style={{ padding: 10, backgroundColor: index%2 === 0 ? '#ebebeb' : ''}} key={s.id} justify="center" >
-                        {s.updatedAtAM}
                         <Col span={6}>
                             {s.day}
                         </Col>
