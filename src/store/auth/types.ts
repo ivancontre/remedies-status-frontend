@@ -8,6 +8,9 @@ export type User = {
     id: string;
     name: string;
     email: string;
+    esp32: string[];
+    online: boolean;
+    user: string | null;
 };
 
 export type AuthState = Partial<User> & {

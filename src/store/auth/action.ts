@@ -22,7 +22,10 @@ export const startLogin = (email: string, password: string, setloading: Function
                 dispatch(login({
                     id: respJson.user.id,
                     name: respJson.user.name,
-                    email: respJson.user.email
+                    email: respJson.user.email,
+                    esp32: respJson.user.esp32,
+                    user: respJson.user.user,
+                    online: respJson.user.online,
                 }));
 
             } else  {
@@ -75,7 +78,10 @@ export const startChecking = () => {
                 dispatch(login({
                     id: respJson.user.id,
                     name: respJson.user.name,
-                    email: respJson.user.email
+                    email: respJson.user.email,
+                    esp32: respJson.user.esp32,
+                    user: respJson.user.user,
+                    online: respJson.user.online,
                 }));
 
             } else {

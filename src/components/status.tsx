@@ -42,8 +42,8 @@ const Status: FC = () => {
         dispatch(startUpdateStatus(id, field, status, showLoading, hideLoading));
     };*/
 
-    const handleSwitchV2 = (checked: boolean, id: string, day:string, field: string) => {
-        dispatch(startUpdateStatusV2(id, day, field, checked, showLoading, hideLoading));
+    const handleSwitchV2 = (checked: boolean, id: string, day: string, field: string) => {
+        dispatch(startUpdateStatusV2(id, 'UPDATE_ONE', day, field, checked, showLoading, hideLoading));
     };
     
     const handleLogout = () => {
